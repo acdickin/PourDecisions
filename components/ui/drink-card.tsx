@@ -10,7 +10,7 @@ export const DrinkCard = ({
   idDrink,
 }: DrinkCardProps) => {
   return (
-    <div className="flex justify-between p-6 border border-default rounded-lg">
+    <div className="flex justify-between p-6 border border-default rounded-lg bg-slate-50 dark:bg-slate-600">
       <div>
         <h2 className="text-lg font-bold">{strDrink}</h2>
       </div>
