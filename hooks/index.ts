@@ -1,6 +1,6 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 
-import { DrinksResponse } from "../types/drinks";
+import { Drink, DrinksResponse } from "../types/drinks";
 import { fetchFromCocktailAPI } from "./fetch";
 
 export function useTrendingDrinks(): UseQueryResult<DrinksResponse, Error> {
@@ -9,6 +9,16 @@ export function useTrendingDrinks(): UseQueryResult<DrinksResponse, Error> {
     queryFn: () =>
       fetchFromCocktailAPI<DrinksResponse>("filter.php", {
         c: "Ordinary_Drink",
+      }),
+  });
+}
+
+export function useDrinkDetail(id: string): UseQueryResult<Drink[], Error> {
+  return useQuery({
+    queryKey: ["drinkDetail", id],
+    queryFn: () =>
+      fetchFromCocktailAPI<Drink[]>("lookup.php", {
+        i: id,
       }),
   });
 }
