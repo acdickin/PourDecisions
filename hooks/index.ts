@@ -22,3 +22,16 @@ export function useDrinkDetail(id: string): UseQueryResult<Drink[], Error> {
       }),
   });
 }
+
+export function useSearchDrinks(
+  query: string,
+): UseQueryResult<DrinksResponse, Error> {
+  return useQuery({
+    queryKey: ["searchDrinks", query],
+    queryFn: () =>
+      fetchFromCocktailAPI<DrinksResponse>("search.php", {
+        s: query,
+      }),
+    enabled: query.length > 0,
+  });
+}
